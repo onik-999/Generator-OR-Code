@@ -1,28 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QR Code Generator</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-</head>
 
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
 <body>
 
+    <button id="darkToggle">Dark Mode</button>
+
     <h1>Generate QR Code</h1>
+    <p class="subtitle">Type or paste a URL — QR will generate automatically.</p>
 
-    <input id="URL" type="url" placeholder="Type your URL...">
+    <div class="input-area">
+        <input id="URL" type="url" placeholder="Type your URL..." />
+        <button onclick="handleGenerateQrCode()" class="btn">Generate</button>
 
-    <button onclick="handleGenerateQrCode()" class="btn">Generate</button>
+        <label class="color-label">Dark color</label>
+        <input type="color" id="darkColor" value="#000000">
+
+        <label class="color-label">Light color</label>
+        <input type="color" id="lightColor" value="#ffffff">
+    </div>
+
+    <div class="options">
+        <label>Size: <span id="sizeValue">200</span>px</label>
+        <input type="range" id="qrSize" min="150" max="400" value="200">
+        <label>Download format</label>
+        <select id="downloadFormat">
+            <option>PNG</option>
+            <option>JPG</option>
+            <option>WEBP</option>
+        </select>
+    </div>
 
     <div id="qr-area">
         <div id="QR-CODE"></div>
         <p id="website-name"></p>
     </div>
+
+    <button id="download-btn" onclick="downloadQR()">Download QR</button>
+
     <footer>
-        Developed by <b>ONIK DAS </b>
+        <div class="security-badge">
+            <span class="badge">🔒 Secure</span>
+            <span class="badge">🛡 No Data Collected</span>
+            <p class="badge-note">QR generation happens locally on your device.</p>
+            Developed by <b>ONIK</b>
+        </div>     
     </footer>
+
     <script src="app.js"></script>
 </body>
 </html>
